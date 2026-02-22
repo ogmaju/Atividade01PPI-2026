@@ -35,29 +35,9 @@ app.get('/', (req, res) => {
 
     if (!idade && !sexo && !salario_base && !anoContratacao && !matricula) {
     return res.send(`
-        <h1>Calculador de Reajuste Salarial</h1>
-        <form method="GET" action="/">
-            <label>Idade:</label>
-            <input type="number" name="idade" required><br><br>
-
-            <label>Sexo (M ou F):</label>
-            <select name="sexo" required>
-                <option value="">Selecione</option>
-                <option value="M">Masculino</option>
-                <option value="F">Feminino</option>
-            </select><br><br>
-
-            <label>Salário Base:</label>
-            <input type="number" step="0.01" name="salario_base" required><br><br>
-
-            <label>Ano Contratação:</label>
-            <input type="number" name="anoContratacao" required><br><br>
-
-            <label>Matrícula:</label>
-            <input type="number" name="matricula" required><br><br>
-
-            <button type="submit">Calcular</button>
-        </form>
+         <h1>Bem-vindo ao Calculador de Reajuste Salarial</h1>
+            <p>Para calcular o salário reajustado, informe os dados na URL como no exemplo abaixo:</p>
+            <p><code>http://localhost:3000/?idade=18&sexo=F&salario_base=1700&anoContratacao=2014&matricula=12345</code></p>
     `);
 }
 
@@ -90,8 +70,8 @@ app.get('/', (req, res) => {
         `);
     }
 
-    const novoSalario = calcularSalario(idadeNum, sexo, salarioBaseNum, anoNum);
-
+    const novoSalario = calcularSalario(idadeNum, sexoFormatado, salarioBaseNum, anoNum);
+    
     res.send(`
         <h1>Resultado do Cálculo</h1>
         <p><strong>Matrícula:</strong> ${matriculaNum}</p>
